@@ -1,0 +1,55 @@
+﻿@page
+@model ProiectMediiProgramare.Pages.Masini.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Masina</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Masina.Model)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Masina.Model)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Masina.Producator)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Masina.Producator.ID)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Masina.An)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Masina.An)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Masina.Categorie)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Masina.Categorie.ID)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Masina.Pret)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Masina.Pret)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Masina.Locatie)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Masina.Locatie.ID)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Masina?.ID">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

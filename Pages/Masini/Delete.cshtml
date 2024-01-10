@@ -1,0 +1,58 @@
+﻿@page
+@model ProiectMediiProgramare.Pages.Masini.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Masina</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Masina.Model)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Masina.Model)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Masina.Producator)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Masina.Producator.ID)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Masina.An)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Masina.An)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Masina.Categorie)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Masina.Categorie.ID)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Masina.Pret)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Masina.Pret)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Masina.Locatie)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Masina.Locatie.ID)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Masina.ID" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>
