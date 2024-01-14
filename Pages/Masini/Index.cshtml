@@ -1,15 +1,30 @@
-﻿@page
+﻿@page "/"
 @model ProiectMediiProgramare.Pages.Masini.IndexModel
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Masini</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create">Adauga o noua Masina</a>
 </p>
+<form method="get">
+    <div class="form-group row">
+        <label for="searchString" class="col-sm-2 col-form-label">Cautare dupa Model Masina:</label>
+        <div class="col-sm-6">
+            <div class="input-group">
+                <input type="text" class="form-control" id="searchString" name="SearchString" value="@Model.SearchString" placeholder="Enter Model" />
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">Search</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
 <table class="table">
     <thead>
         <tr>
@@ -41,19 +56,19 @@
                 @Html.DisplayFor(modelItem => item.Model)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Producator.ID)
+                @Html.DisplayFor(modelItem => item.Producator.Nume)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.An)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Categorie.ID)
+                @Html.DisplayFor(modelItem => item.Categorie.Nume)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Pret)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Locatie.ID)
+                @Html.DisplayFor(modelItem => item.Locatie.Oras)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |

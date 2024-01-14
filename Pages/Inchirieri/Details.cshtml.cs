@@ -21,23 +21,32 @@ namespace ProiectMediiProgramare.Pages.Inchirieri
 
       public Inchiriere Inchiriere { get; set; } = default!; 
 
-        public async Task<IActionResult> OnGetAsync(int? id)
-        {
-            if (id == null || _context.Inchiriere == null)
+       
+            public async Task<IActionResult> OnGetAsync(int? id)
             {
-                return NotFound();
+                if (id == null || _context.Inchiriere == null)
+                {
+                    return NotFound();
+                }
+
+                // Modify the query to include Masina and its Producator
+                var inchiriere = await _context.Inchiriere
+                    .Include(i => i.Masina)
+                        .ThenInclude(m => m.Producator)
+                    .Include(i => i.Client) // Assuming you also want to include details about the Client
+                    .FirstOrDefaultAsync(m => m.ID == id);
+
+                if (inchiriere == null)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    Inchiriere = inchiriere;
+                }
+                return Page();
             }
 
-            var inchiriere = await _context.Inchiriere.FirstOrDefaultAsync(m => m.ID == id);
-            if (inchiriere == null)
-            {
-                return NotFound();
-            }
-            else 
-            {
-                Inchiriere = inchiriere;
-            }
-            return Page();
         }
     }
-}
+

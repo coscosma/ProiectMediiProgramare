@@ -19,7 +19,7 @@ namespace ProiectMediiProgramare.Pages.Masini
             _context = context;
         }
 
-      public Masina Masina { get; set; } = default!; 
+      public Masina Masina { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,16 +28,23 @@ namespace ProiectMediiProgramare.Pages.Masini
                 return NotFound();
             }
 
-            var masina = await _context.Masina.FirstOrDefaultAsync(m => m.ID == id);
+            // Include related entities
+            var masina = await _context.Masina
+                .Include(m => m.Producator)
+                .Include(m => m.Categorie)
+                .Include(m => m.Locatie)
+                .FirstOrDefaultAsync(m => m.ID == id);
+
             if (masina == null)
             {
                 return NotFound();
             }
-            else 
+            else
             {
                 Masina = masina;
             }
             return Page();
         }
+
     }
 }

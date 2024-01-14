@@ -21,9 +21,9 @@ namespace ProiectMediiProgramare.Pages.Masini
 
         public IActionResult OnGet()
         {
-        ViewData["CategorieID"] = new SelectList(_context.Categorie, "ID", "ID");
-        ViewData["LocatieID"] = new SelectList(_context.Locatie, "ID", "ID");
-        ViewData["ProducatorID"] = new SelectList(_context.Set<Producator>(), "ID", "ID");
+        ViewData["CategorieID"] = new SelectList(_context.Categorie, "ID", "Nume");
+        ViewData["LocatieID"] = new SelectList(_context.Locatie, "ID", "Oras");
+        ViewData["ProducatorID"] = new SelectList(_context.Set<Producator>(), "ID", "Nume");
             return Page();
         }
 

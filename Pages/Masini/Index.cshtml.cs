@@ -10,26 +10,36 @@ using ProiectMediiProgramare.Models;
 
 namespace ProiectMediiProgramare.Pages.Masini
 {
+    
     public class IndexModel : PageModel
     {
         private readonly ProiectMediiProgramare.Data.ApplicationDbContext _context;
-
         public IndexModel(ProiectMediiProgramare.Data.ApplicationDbContext context)
         {
             _context = context;
         }
 
-        public IList<Masina> Masina { get;set; } = default!;
+        [BindProperty(SupportsGet = true)]
+        public string SearchString { get; set; }
+
+        public IList<Masina> Masina { get; set; } = default!;
 
         public async Task OnGetAsync()
         {
-            if (_context.Masina != null)
+            var query = _context.Masina.AsQueryable();
+
+            if (!string.IsNullOrEmpty(SearchString))
             {
-                Masina = await _context.Masina
+                query = query.Where(m => m.Model.Contains(SearchString));
+            }
+
+            Masina = await query
                 .Include(m => m.Categorie)
                 .Include(m => m.Locatie)
-                .Include(m => m.Producator).ToListAsync();
-            }
+                .Include(m => m.Producator)
+                .ToListAsync();
         }
+
+        
     }
 }

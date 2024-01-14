@@ -27,7 +27,9 @@ namespace ProiectMediiProgramare.Pages.Inchirieri
             {
                 Inchiriere = await _context.Inchiriere
                 .Include(i => i.Client)
-                .Include(i => i.Masina).ToListAsync();
+                .Include(i => i.Masina)
+                  .ThenInclude(m => m.Producator).
+                ToListAsync();
             }
         }
     }

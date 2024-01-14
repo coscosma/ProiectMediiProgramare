@@ -36,8 +36,12 @@ namespace ProiectMediiProgramare.Pages.Inchirieri
                 return NotFound();
             }
             Inchiriere = inchiriere;
-           ViewData["ClientID"] = new SelectList(_context.Client, "ID", "ID");
-           ViewData["MasinaID"] = new SelectList(_context.Set<Masina>(), "ID", "ID");
+           ViewData["ClientID"] = new SelectList(_context.Client, "ID", "Nume");
+            ViewData["MasinaID"] = new SelectList(_context.Masina.Include(m => m.Producator)
+             .Select(m => new {
+                 ID = m.ID,
+                 Description = $"{m.Producator.Nume} - {m.Model}" // Adjust this format as needed
+             }), "ID", "Description");
             return Page();
         }
 

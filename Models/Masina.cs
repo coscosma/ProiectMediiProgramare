@@ -20,5 +20,7 @@
         public int? LocatieID { get; set; }
 
         public Locatie? Locatie { get; set; }
+
+
     }
 }
